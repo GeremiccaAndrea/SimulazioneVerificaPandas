@@ -20,6 +20,11 @@ def Es2():
     senzaDuplicati = quartieri.drop_duplicates().to_html()
     return render_template('risultato.html', tabella = senzaDuplicati)
 
+@app.route('/Es3')
+def Es3():
+    zona = request.args.get('zona')
+    dfmedio = df[df['neighborhood'] == zona][['price']].mean()
+    return render_template('risultato.html', tabella = dfmedio)
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
