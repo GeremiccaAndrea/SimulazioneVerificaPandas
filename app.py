@@ -14,5 +14,12 @@ def Es1():
     appartamentiQuartiere = df[df["neighborhood"] == quartiere].sort_values(by= 'date')[['neighborhood', 'price', 'date']].to_html()
     return render_template('risultato.html', tabella = appartamentiQuartiere)
 
+@app.route('/Es2')
+def Es2():
+    quartieri = df[['neighborhood']].sort_values(by = 'neighborhood')
+    senzaDuplicati = quartieri.drop_duplicates().to_html()
+    return render_template('risultato.html', tabella = senzaDuplicati)
+
+
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
