@@ -26,5 +26,10 @@ def Es3():
     dfmedio = df[df['neighborhood'] == zona][['price']].mean()
     return render_template('risultato.html', tabella = dfmedio)
 
+@app.route('/Es4')
+def Es4():
+    prezzoMedioQuartiere = df.groupby("neighborhood")[["price"]].mean().sort_values(by = 'price',ascending = False).to_html()
+    return render_template('risultato.html', tabella = prezzoMedioQuartiere)
+
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
